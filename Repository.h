@@ -9,7 +9,8 @@ using std::vector;
 using std::string;
 
 class FilmRepo {
-	List<Film> filme;
+	vector<Film> filme;
+	friend class Cos;
 
 public:
 	FilmRepo() = default;
@@ -48,7 +49,7 @@ public:
 	const Film stergere(const Film filmDeSters);
 
 	//returneaza o lista cu toate filmele
-	const List<Film>& getAll() const noexcept;
+	const vector<Film>& getAll() const noexcept;
 };
 
 class RepoException {

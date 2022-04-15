@@ -84,7 +84,7 @@ template <typename T> void List<T>::remove(int ind) {
 	dim--;
 }
 
-template <typename T> void List<T>::operator=(const List<T>& ot) {
+template <typename T> List<T>& List<T>::operator=(const List<T>& ot) {
 	dim = 0;
 	Nod<T>* curent = ot.prim;
 	int i = 0;
@@ -93,7 +93,7 @@ template <typename T> void List<T>::operator=(const List<T>& ot) {
 		curent = curent->urmator;
 		i++;
 	}
-	//return *this;
+	return *this;
 }
 
 void testList() {

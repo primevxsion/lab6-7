@@ -17,7 +17,6 @@ bool cmpActor(const Film& film1, const Film& film2) {
 	return film1.getActor() < film2.getActor();
 }
 
-
 void testFilm() {
 	Film film1{ "benny", 1990, "istorie", "benny" };
 	Film film2{ "tyson", 1920, "comedie", "tyson" };

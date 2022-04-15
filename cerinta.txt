@@ -1,37 +1,31 @@
-﻿2 Închiriere filme
-Creați o aplicație care permite:
-· gestiunea unei liste de filme. Film: titlu, gen, anul apariției, actor principal
-· adăugare, ștergere, modificare și afișare filme
-· căutare film
-· filtrare filme după: titlu, anul apariției
-· sortare filme după titlu, actor principal, anul apariției + gen
+﻿Cerințe Iterația 1:
+• Modificați aplicația: folosiți clasa vector din STL si înlocuiți toate for-urile din
+aplicație cu algoritmi din STL si varianta c++11 de for (range for). Exemplu
+de algoritmi: copy_if (la filtrare), find_if (căutare), sort
+• Folosiți excepții pentru a raporta erori (creați clase proprii pentru excepții).
+• Adăugați funcționalitatea noua (descris la fiecare problema).
 
-Cerințe generale:
-– Creați o aplicație C++, folosiți paradigma orientat obiect
-– Aplicația are interfața utilizator tip consola
-– Utilizați procesul de dezvoltare bazat pe funcționalități (Feature driven
-development). Identificați funcționalitățile și planificați-le pe doua iterații
-– Folosiți o arhitectură stratificata (UI / Services(GRASP Controller) / Repository).
-Creati clase pentru: Domain, Service, UI, Repository.
-– Toate funcțiile necesare vor fi specificate și testate. (Test Code Coverage >99% la
-toate modulele in afara de UI)
-– Fara warninguri (in Visual Studio warning level /W4, treat warning as errors)
-– Const Correctness:
-– folosiți calificativul const pentru variabile/parametrii care nu sunt modificați
-– folosiți calificativul const pentru metode care nu modifica starea obiectelor
-– transmiteți parametrii prin const & peste tot unde este posibil
-– evitați copierea obiectelor când nu este necesar.
+• Pentru a alege aleator elemente puteți folosi:
+#include <random>
+std::mt19937 mt{ std::random_device{}() };
+std::uniform_int_distribution<> dist(0, v.size()-1);
+int rndNr = dist(mt);// numar aleator intre [0,size-1]
 
- Iterație 1:
-– Folosiți clasa std::string si clasa std::vector din STL (librăria standard C++)
-– Nu folosiți pointeri.
-– Nu alocați dinamic.
+#include <algorithm>
+#include <random> // std::default_random_engine
+#include <chrono> // std::chrono::system_clock
+auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+std::shuffle(v.begin(),v.end(), std::default_random_engine(seed)); //amesteca vectorul v
 
- Iterația 2:
-– Înlocuiți clasa std::vector cu o clasa proprie parametrizata (Template) care
-implementează o lista folosind structura de date lista înlănțuita sau vector
-dinamic (la alegere).
-– Validarea datelor. Utilizatorul este anunțat printr-un mesaj daca: introduce
-valori de intrare greșite; încearcă sa adauge o entitate de doua ori, încearcă
-sa șteargă / modifice o entitate inexistenta (se vor folosi excepții)
-– Creați o diagramă UML a claselor pentru a schița arhitectura aplicației
+Introduceți posibilitatea de a crea un cos de închirieri. Utilizatorul poate crea
+interactiv o lista de filme pe care dorește sa le închirieze.
+Adăugați următoarele acțiuni (elemente de meniu):
+• Golește cos: șterge toate filmele din cos.
+• Adaugă in cos: adaugă in cos un film după titlu
+• Generează cos: utilizatorul introduce numărul total de filme, coșul se
+populează aliator cu filme
+• Export. Salvează cos in fișier: CVS sau HTML. Se face salvarea in fișier doar
+când s-a selectat acest meniu, coșul nu este persistent (la repornire aplicație
+coșul este din nou gol), utilizatorul introduce numele fișierului unde se
+salvează la fiecare export.
+ După fiecare acțiune utilizator se afișează numărul total al filmelor din cos

@@ -78,6 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -140,11 +141,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cos.cpp" />
     <ClCompile Include="Film.cpp" />
-    <ClCompile Include="List.cpp" />
+    <ClCompile Include="TesteList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Repository.cpp" />
     <ClCompile Include="Service.cpp" />
+    <ClCompile Include="TesteCurs.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Validators.cpp" />
   </ItemGroup>
@@ -152,10 +155,12 @@
     <Text Include="cerinta.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cos.h" />
     <ClInclude Include="Film.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="Service.h" />
+    <ClInclude Include="TesteCurs.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Validators.h" />
   </ItemGroup>

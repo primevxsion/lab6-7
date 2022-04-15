@@ -10,7 +10,9 @@ class Film {
 	int an;
 
 public:
-	Film(const string titlu, int an, const string gen, const string actor):titlu{titlu},an{an},gen{gen},actor{actor}{}
+	Film(const string titlu, int an, const string gen, const string actor) :titlu{ titlu }, an{ an }, gen{ gen }, actor{ actor } {}
+
+	Film() : an{ 2000 } {}
 
 	Film(const Film& alt):titlu{alt.titlu},gen{alt.gen},actor{alt.actor},an{alt.an}{}
 

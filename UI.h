@@ -14,6 +14,13 @@ public:
 	void uiModifca() const;
 	void uiSterge() const;
 	void uiCauta() const;
+	void uiSortare() const;
 	void afisare() const;
 	void start() const;
+	void afisareCos() const;
+	void uiAdaugaCos() const;
+	void uiGenereaza() const;
+	void uiGoleste() const;
+	void uiExporta() const;
+	void uiNumara() const;
 };

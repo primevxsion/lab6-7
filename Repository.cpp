@@ -1,40 +1,45 @@
 #include "Repository.h"
 #include <assert.h>
+#include <algorithm>
 
 void FilmRepo::adaugare(const Film& film) {
 	if (gasesteIndex(film) != -1)
 		throw RepoException("Filmul exista deja in lista!");
+
 	filme.push_back(film);
 }
 
-const List<Film>& FilmRepo::getAll() const noexcept {
+const vector<Film>& FilmRepo::getAll() const noexcept {
 	return filme;
 }
 
 const Film FilmRepo::cautare(string titlu, string gen, int an) const {
-	for (int i = 0; i < filme.size(); ++i) {
-		Film v = filme[i];
-		if (v.getTitlu() == titlu && v.getAn() == an && v.getGen() == gen)
-			return filme[i];
-	}
+	auto it = find_if(filme.begin(), filme.end(), [=](const Film& film) {return film.getTitlu() == titlu && film.getAn() == an && film.getGen() == gen; });
+	
+	if(it == filme.end())
+		throw RepoException("Filmul cautat nu exista.");
 
-	throw RepoException("Filmul cautat nu exista.");}
+	return *it;
+}
 
 const Film FilmRepo::modificare(int ind, Film filmNou) {
-	return filme.modify(ind, filmNou);
+	filme[ind] = filmNou;
+	return filmNou;
+	//return filme.modify(ind, filmNou);
 }
 
 int FilmRepo::gasesteIndex(const Film& filmCautat) {
-	for (int i = 0; i < filme.size(); ++ i) {
-		if (filme[i] == filmCautat)
-			return i;
-	}
-	return -1;
+	auto it = std::find_if(filme.begin(), filme.end(), [&](const Film& film) {return film == filmCautat; });
+	if (it == filme.end())
+		return -1;
+	
+	return (int) (it - filme.begin());
 }
 
 const Film FilmRepo::stergere(const Film filmDeSters) {
 	int index = gasesteIndex(filmDeSters);
-	filme.remove(index);
+	//filme.remove(index);
+	filme.erase(filme.begin() + index);
 	return filmDeSters;
 }
 
@@ -75,6 +80,6 @@ void testRepo() {
 		repoTest.cautare("nas", "istorie", 1992);
 	}
 	catch (RepoException&) {}
-	List<Film> lista = repoTest.getAll();
+	vector<Film> lista = repoTest.getAll();
 
 }
