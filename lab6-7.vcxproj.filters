@@ -73,5 +73,8 @@
     <ClInclude Include="Cos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Undo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

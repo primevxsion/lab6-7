@@ -162,6 +162,7 @@
     <ClInclude Include="Service.h" />
     <ClInclude Include="TesteCurs.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Undo.h" />
     <ClInclude Include="Validators.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

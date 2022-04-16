@@ -16,6 +16,7 @@ void Console::menu() const {
 	cout << "6. Filtreaza" << endl;
 	cout << "7. Sorteaza" << endl;
 	cout << "8. Numara" << endl;
+	cout << "9. Undo" << endl;
 	cout << endl;
 	afisareCos();
 }
@@ -33,10 +34,10 @@ void Console::afisareCos() const {
 		cout << "Cosul de cumparaturi este gol." << endl;
 
 	cout << "Comenzi disponibile pentru cosul de cumparaturi:" << endl;
-	cout << "9. Adauga" << endl;
-	cout << "10. Goleste" << endl;
-	cout << "11. Genereaza cos" << endl;
-	cout << "12. Exporta" << endl;
+	cout << "10. Adauga" << endl;
+	cout << "11. Goleste" << endl;
+	cout << "12. Genereaza cos" << endl;
+	cout << "13. Exporta" << endl;
 	cout << endl;
 }
 
@@ -249,15 +250,23 @@ void Console::start() const {
 			uiNumara();
 			break;
 		case 9:
-			uiAdaugaCos();
+			try {
+				service.undo();
+			}
+			catch (RepoException& r) {
+				cout << r.getErrorMessages();
+			}
 			break;
 		case 10:
-			uiGoleste();
+			uiAdaugaCos();
 			break;
 		case 11:
-			uiGenereaza();
+			uiGoleste();
 			break;
 		case 12:
+			uiGenereaza();
+			break;
+		case 13:
 			uiExporta();
 			break;
 		default:

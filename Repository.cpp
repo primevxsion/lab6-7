@@ -25,7 +25,7 @@ const Film FilmRepo::cautare(string titlu, string gen, int an) const {
 const Film FilmRepo::modificare(int ind, Film filmNou) {
 	filme[ind] = filmNou;
 	return filmNou;
-	//return filme.modify(ind, filmNou);
+	//return filme.modify(ind, filmNou); //LDI
 }
 
 int FilmRepo::gasesteIndex(const Film& filmCautat) {

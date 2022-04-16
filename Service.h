@@ -5,12 +5,14 @@
 #include <string.h>
 #include <functional>
 #include "Cos.h"
+#include "Undo.h"
 
 class FilmService {
 private:
 	FilmRepo& repo;
 	FilmValidator& validator;
 	Cos& cos;
+	vector<std::unique_ptr<ActiuneUndo>> actiuniUndo;
 
 public:
 	FilmService(FilmRepo& repo, FilmValidator& validator, Cos& cos) : repo{ repo }, validator{ validator }, cos{cos}{}
@@ -37,6 +39,8 @@ public:
 	vector<Film>& getCos() {
 		return cos.getCos();
 	}
+
+	void undo();
 
 	int numaraFilme(std::function<bool(const Film& film)> cond);
 

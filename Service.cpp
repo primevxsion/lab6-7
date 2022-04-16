@@ -8,6 +8,8 @@ const Film FilmService::adaugaFilm(string titlu, string gen, int an, string acto
 	validator.valideaza(filmDeAdaugat);
 	repo.adaugare(filmDeAdaugat);
 
+	actiuniUndo.push_back(std::make_unique<UndoAdauga>(repo, filmDeAdaugat));
+
 	return filmDeAdaugat;
 }
 
@@ -18,6 +20,8 @@ const Film FilmService::modificaFilm(string titlu, string gen, int an, string ti
 	Film filmDeModificat = repo.cautare(titlu, gen, an);
 	int ind = repo.gasesteIndex(filmDeModificat);
 
+	actiuniUndo.push_back(std::make_unique<UndoModifica>(repo, filmDeModificat, ind));
+
 	return repo.modificare(ind, filmNou);
 }
 
@@ -25,6 +29,8 @@ const Film FilmService::stergeFilm(string titlu, string gen, int an) {
 	Film filmCautat = repo.cautare(titlu, gen, an);
 	
 	repo.stergere(filmCautat);
+
+	actiuniUndo.push_back(std::make_unique<UndoSterge>(repo, filmCautat));
 
 	return filmCautat;
 }
@@ -77,6 +83,14 @@ void FilmService::exportaCos(string numeFisier) {
 int FilmService::numaraFilme(std::function<bool(const Film& film)> cond) {
 	const vector<Film>& filme = getAll();
 	return (int)std::count_if(filme.begin(), filme.end(), cond);
+}
+
+void FilmService::undo() {
+	if (actiuniUndo.empty())
+		throw RepoException("Nu mai exista operatii!");
+
+	actiuniUndo.back()->doUndo();
+	actiuniUndo.pop_back();
 }
 
 void testService() {
