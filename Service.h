@@ -9,13 +9,13 @@
 
 class FilmService {
 private:
-	FilmRepo& repo;
+	Repo& repo;
 	FilmValidator& validator;
 	Cos& cos;
 	vector<std::unique_ptr<ActiuneUndo>> actiuniUndo;
 
 public:
-	FilmService(FilmRepo& repo, FilmValidator& validator, Cos& cos) : repo{ repo }, validator{ validator }, cos{cos}{}
+	FilmService(Repo& repo, FilmValidator& validator, Cos& cos) : repo{ repo }, validator{ validator }, cos{cos}{}
 
 	//stergem constructorul de copiere
 	FilmService(const FilmService& ot) = delete;

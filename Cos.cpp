@@ -13,8 +13,8 @@ void Cos::adauga(const Film& film) {
 	cosFilme.push_back(film);
 }
 
-void Cos::genereaza(int nrFilme, FilmRepo& repo) {
-	vector<Film> filme = repo.filme;	//cos e friend class pentru FilmRepo
+void Cos::genereaza(int nrFilme, Repo& repo) {
+	vector<Film> filme = repo.getAll();	//cos e friend class pentru FilmRepo
 	int size = (int) filme.size();
 	
 	std::mt19937 mt{ std::random_device{}() };

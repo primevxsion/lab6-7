@@ -42,6 +42,9 @@
     <ClCompile Include="Cos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProbabilityRepo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="cerinta.txt">

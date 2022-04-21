@@ -148,3 +148,42 @@ void testService() {
 	}
 	catch (CosException&) {}
 }
+
+void testeUndo() {
+	FilmRepo filmRepo;
+	FilmValidator filmVal;
+	Cos cos;
+	FilmService filmServ{ filmRepo, filmVal, cos };
+
+	filmServ.adaugaFilm("benny", "rap", 1999, "benny");
+	filmServ.adaugaFilm("conway", "rap", 2000, "conway");
+	filmServ.undo();
+	try {
+		filmServ.cautaFilm("conway", "rap", 2000);
+	}
+	catch (RepoException& r) {
+		r.getErrorMessages();
+	}
+
+	assert(filmRepo.getAll().size() == 1);
+
+	filmServ.modificaFilm("benny", "rap", 1999, "ben", 2000, "rap", "benny");
+	filmServ.undo();
+	try {
+		filmServ.cautaFilm("ben", "rap", 2000);
+	}
+	catch (RepoException& r) {
+		r.getErrorMessages();
+	}
+	
+	filmServ.stergeFilm("benny", "rap", 1999);
+	assert(filmServ.getAll().size() == 0);
+	filmServ.undo();
+	try {
+		filmServ.undo();
+		filmServ.undo();
+	}
+	catch (RepoException& r) {
+		r.getErrorMessages();
+	}
+}

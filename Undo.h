@@ -8,39 +8,44 @@ public:
 	virtual ~ActiuneUndo() = default;
 };
 
+
 class UndoAdauga : public ActiuneUndo {
 	Film filmAdaugat;
-	FilmRepo& repo;
+	Repo& repo;
 
 public:
-	UndoAdauga(FilmRepo& repo, Film& film) : repo{ repo }, filmAdaugat{ film } {}
+	UndoAdauga(Repo& repo, Film& film) : repo{ repo }, filmAdaugat{ film } {}
 
 	void doUndo() override {
 		repo.stergere(filmAdaugat);
 	}
 };
 
+
 class UndoSterge : public ActiuneUndo {
 	Film filmSters;
-	FilmRepo& repo;
+	Repo& repo;
 
 public:
-	UndoSterge(FilmRepo& repo, Film& film) : repo{ repo }, filmSters{ film } {}
+	UndoSterge(Repo& repo, Film& film) : repo{ repo }, filmSters{ film } {}
 
 	void doUndo() override {
 		repo.adaugare(filmSters);
 	}
 };
 
+
 class UndoModifica : public ActiuneUndo {
 	Film filmModificat;
 	int indice;
-	FilmRepo& repo;
+	Repo& repo;
 
 public:
-	UndoModifica(FilmRepo& repo, Film& film, int indice) : repo{ repo }, filmModificat{ film }, indice{ indice } {}
+	UndoModifica(Repo& repo, Film& film, int indice) : repo{ repo }, filmModificat{ film }, indice{ indice } {}
 
 	void doUndo() override {
 		repo.modificare(indice, filmModificat);
 	}
 };
+
+void testeUndo();

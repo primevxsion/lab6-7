@@ -19,7 +19,7 @@ public:
 	void adauga(const Film& film);
 
 	//Genereaza un cos cu nrFilme filme alese in mod aleatoriu
-	void genereaza(int nrFilme, FilmRepo& repo);
+	void genereaza(int nrFilme, Repo& repo);
 
 	//Returneaza lista de filme din cos
 	vector<Film>& getCos() {

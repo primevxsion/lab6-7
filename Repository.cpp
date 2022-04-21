@@ -9,7 +9,7 @@ void FilmRepo::adaugare(const Film& film) {
 	filme.push_back(film);
 }
 
-const vector<Film>& FilmRepo::getAll() const noexcept {
+const vector<Film>& FilmRepo::getAll() noexcept {
 	return filme;
 }
 

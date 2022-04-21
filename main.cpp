@@ -7,7 +7,8 @@
 #define _CRTDBG_MAP_ALLOC
 
 void start() {
-	FilmRepo repo;
+	ProbRepo repo;
+	repo.setProb(1);
 	FilmValidator validator;
 	Cos cos;
 	FilmService service{ repo, validator, cos};
@@ -19,7 +20,9 @@ int main()
 {
 	testCurs();
 	testeCos();
+	testeUndo();
 	testList();
+	testProb();
 	testFilm();
 	testValidator();
 	testService();
